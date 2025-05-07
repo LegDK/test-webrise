@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "test-webrise-collection",
+		"name": "Test WebRise API",
+		"description": "API для управления пользователями и подписками",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Пользователи",
+			"item": [
+				{
+					"name": "Создание пользователя",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"ivanov\",\n    \"email\": \"ivanov@example.com\",\n    \"fullName\": \"Иванов Иван\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": ["{{base_url}}"],
+							"path": ["users"]
+						}
+					}
+				},
+				{
+					"name": "Получение пользователя",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Обновление пользователя",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"ivanov_updated\",\n    \"email\": \"ivanov_updated@example.com\",\n    \"fullName\": \"Иванов Иван Петрович\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Удаление пользователя",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Подписки",
+			"item": [
+				{
+					"name": "Получение всех подписок",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/subscriptions",
+							"host": ["{{base_url}}"],
+							"path": ["subscriptions"]
+						}
+					}
+				},
+				{
+					"name": "Получение подписки по ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/subscriptions/1",
+							"host": ["{{base_url}}"],
+							"path": ["subscriptions", "1"]
+						}
+					}
+				},
+				{
+					"name": "Получение топ-3 подписок",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/subscriptions/top",
+							"host": ["{{base_url}}"],
+							"path": ["subscriptions", "top"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Подписки пользователей",
+			"item": [
+				{
+					"name": "Получение подписок пользователя",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/users/1/subscriptions",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1", "subscriptions"]
+						}
+					}
+				},
+				{
+					"name": "Добавление подписки пользователю",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/users/1/subscriptions?subscriptionId=1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1", "subscriptions"],
+							"query": [
+								{
+									"key": "subscriptionId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Удаление подписки у пользователя",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/users/1/subscriptions/1",
+							"host": ["{{base_url}}"],
+							"path": ["users", "1", "subscriptions", "1"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		}
+	]
+} 
